@@ -1,0 +1,20 @@
+---
+title: "Homework 3"
+author: "Mari Sanders"
+date: "2024-10-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(tidyverse)
+```
+
+# Problem 1 
+
+```{r}
+birth_weight <- data("birthwt")
+
+```
+
