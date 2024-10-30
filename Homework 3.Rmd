@@ -9,12 +9,87 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 library(MASS)
 library(tidyverse)
+data("birthwt")
 ```
 
 # Problem 1 
 
+a) 
+
 ```{r}
-birth_weight <- data("birthwt")
+x <- 
+  birthwt %>% 
+  pull(lwt)
+
+t.test(x, conf.level = 0.95)
+```
+
+b)
+
+We are 95% confident that the true  average weight of American Women is between 125.4270 and 134.2027 pounds. 
+c) 
+
+Since 171 is not in our confidence interval, we can reject the hypothesis that the average weight of American women is 171 pounds. 
+
+# Problem 2 
+
+a) 
+
+```{r}
+not_smoke <- 
+  birthwt %>% select(lwt, smoke) %>% filter(smoke == 0) %>% select(-smoke) %>% pull(lwt)
+
+smoke <- 
+  birthwt %>% select(lwt, smoke) %>% filter(smoke == 1) %>% select(-smoke) %>% pull(lwt)
+
+var.test(not_smoke, smoke, alternative = "two.sided", conf.level = 0.95)
+```
+
+b) 
+
+We should preform a two sample t test with variance, since we get that the p-value is 0.09 we fail to reject the null hypothesis that the variances are equal. 
+
+c) 
+
+```{r}
+t.test(not_smoke, smoke, var.equal = TRUE, conf.level = 0.90)
+```
+
+We get a p-value to be 0.5161. This means we fail to reject the null hypothesis that 
+
+# Problem 3 
+
+a) 
+
+```{r}
+hypertension <- 
+  birthwt %>% pull(ht)
+t.test(hypertension, conf.level = 0.99, alternative = c("two.sided"))
+```
+
+We are 99% confident that the true value of Amreican women that suffer from hypertension is between 0.0172132 and 0.1097709. 
+
+Since the p-value is 0.0004 and the confidence interval does not include 0.2, we can reject the null hypothesis that the 20% of American women suffer from hypertension. 
+
+b) 
+
+```{r}
+#prop.test(hypertension, alternative = "less", conf.level = )
+```
+
+# Problem 4 
+
+```{r}
+
+```
+
+# Problem 5 
+
+a) An ANOVA test would be the most appropriate because `race` is has more than two groups and `bwt` is continuous. 
+
+b) 
+k > 2, independence, normality, variances are the same 
+```{r}
 
 ```
 
