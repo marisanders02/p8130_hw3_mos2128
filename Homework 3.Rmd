@@ -15,8 +15,7 @@ data("birthwt")
 # Problem 1 
 
 a) 
-$H_0:$ 
-$H_1:$
+
 
 ```{r}
 x <- 
